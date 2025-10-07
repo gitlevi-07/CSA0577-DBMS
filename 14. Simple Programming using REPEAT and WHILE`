@@ -1,0 +1,49 @@
+-- Create and use the database
+CREATE DATABASE db_loop_demo;
+USE db_loop_demo;
+
+-- Create the Employee table
+CREATE TABLE Employee (
+    EmpID INT AUTO_INCREMENT PRIMARY KEY,
+    EmpName VARCHAR(50),
+    DeptID INT
+);
+
+-- ===========================
+-- REPEAT Loop Example
+-- ===========================
+DELIMITER $$
+
+BEGIN
+  SET @counter = 1;
+  REPEAT
+    INSERT INTO Employee (EmpName, DeptID)
+    VALUES (CONCAT('Employee', @counter), 1);
+    
+    SET @counter = @counter + 1;
+  UNTIL @counter > 5
+  END REPEAT;
+END$$
+
+DELIMITER ;
+
+--WHILE Loop Example
+
+DELIMITER $$
+
+BEGIN
+  SET @counter = 1;
+  WHILE @counter <= 5 DO
+    INSERT INTO Employee (EmpName, DeptID)
+    VALUES (CONCAT('Employee', @counter), 2);
+    
+    SET @counter = @counter + 1;
+  END WHILE;
+END$$
+
+DELIMITER ;
+
+-- ===========================
+-- View Result
+-- ===========================
+SELECT * FROM Employee;
