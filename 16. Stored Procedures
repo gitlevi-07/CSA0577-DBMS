@@ -1,0 +1,25 @@
+CREATE DATABASE db_case_loop;
+USE db_case_loop;
+CREATE TABLE Employee (
+    EmpID INT AUTO_INCREMENT PRIMARY KEY,
+    EmpName VARCHAR(50),
+    DeptID INT,
+    Salary DECIMAL(10,2)
+);
+INSERT INTO Employee (EmpName, DeptID, Salary) VALUES
+('Aravind', 1, 6000),
+('Meera', 2, 4800),
+('Rohan', 3, 2500),
+('Sneha', 2, 5200),
+('Kiran', 1, 3000);
+DELIMITER $$
+CREATE PROCEDURE InsertEmployee(IN emp_name VARCHAR(50), IN dept_id INT, IN emp_salary DECIMAL(10,2))
+BEGIN
+    INSERT INTO Employee (EmpName, DeptID, Salary)
+    VALUES (emp_name, dept_id, emp_salary);
+END$$
+DELIMITER ;
+CALL InsertEmployee('John Doe', 1, 5500);
+CALL InsertEmployee('Priya', 2, 3200);
+CALL InsertEmployee('Rahul', 3, 7000);
+SELECT * FROM Employee;
