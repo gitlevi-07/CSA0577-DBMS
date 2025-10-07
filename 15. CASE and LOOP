@@ -1,0 +1,46 @@
+CREATE DATABASE db_case_loop;
+USE db_case_loop;
+
+CREATE TABLE Employee (
+    EmpID INT AUTO_INCREMENT PRIMARY KEY,
+    EmpName VARCHAR(50),
+    DeptID INT,
+    Salary DECIMAL(10,2)
+);
+
+
+INSERT INTO Employee (EmpName, DeptID, Salary) VALUES
+('Aravind', 1, 6000),
+('Meera', 2, 4800),
+('Rohan', 3, 2500),
+('Sneha', 2, 5200),
+('Kiran', 1, 3000);
+
+-- Categorize employees based on their salary
+
+SELECT EmpName, Salary,
+CASE
+    WHEN Salary > 5000 THEN 'High'
+    WHEN Salary BETWEEN 3000 AND 5000 THEN 'Medium'
+    ELSE 'Low'
+END AS Salary_Level
+FROM Employee;
+
+DELIMITER $$
+
+BEGIN
+    SET @counter = 1;
+    simple_loop: LOOP
+        INSERT INTO Employee (EmpName, DeptID, Salary)
+        VALUES (CONCAT('Employee', @counter), 3, 4000);
+
+        SET @counter = @counter + 1;
+
+        IF @counter > 5 THEN
+            LEAVE simple_loop;
+        END IF;
+    END LOOP;
+END$$
+
+DELIMITER ;
+SELECT * FROM Employee;
