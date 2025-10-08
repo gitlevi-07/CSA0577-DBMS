@@ -1,0 +1,9 @@
+CREATE DATABASE exp21_string2;
+USE exp21_string2;
+
+SELECT SPACE(5);
+SELECT SUBSTR('Hello World', 1, 5);
+SELECT UPPER('hello world');
+SELECT LOWER('HELLO WORLD');
+SELECT TRIM(' Hello World ');
+SELECT LENGTH('Hello World');
