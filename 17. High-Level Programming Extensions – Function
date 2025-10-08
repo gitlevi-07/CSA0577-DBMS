@@ -1,0 +1,25 @@
+CREATE DATABASE exp17_function;
+USE exp17_function;
+
+CREATE TABLE Employee (
+    EmpID INT AUTO_INCREMENT PRIMARY KEY,
+    EmpName VARCHAR(50),
+    Salary INT
+);
+
+INSERT INTO Employee (EmpName, Salary) VALUES
+('Ravi', 5000),
+('Meera', 7000),
+('Rahul', 6000);
+
+DELIMITER $$
+CREATE FUNCTION CalculateSalary(emp_id INT)
+RETURNS INT
+BEGIN
+    DECLARE emp_salary INT;
+    SELECT Salary INTO emp_salary FROM Employee WHERE EmpID = emp_id;
+    RETURN emp_salary;
+END $$
+DELIMITER ;
+
+SELECT CalculateSalary(1) AS Employee1_Salary;
