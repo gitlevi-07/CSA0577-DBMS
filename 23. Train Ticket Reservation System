@@ -1,0 +1,16 @@
+CREATE DATABASE exp23_train;
+USE exp23_train;
+
+CREATE TABLE TicketReservation (
+    TicketID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerName VARCHAR(100),
+    TrainNumber VARCHAR(50),
+    DateOfJourney DATE,
+    SocialNetwork VARCHAR(100),
+    TicketStatus VARCHAR(50)
+);
+
+INSERT INTO TicketReservation (CustomerName, TrainNumber, DateOfJourney, SocialNetwork, TicketStatus)
+VALUES ('John Doe', '101', '2025-05-01', 'Facebook', 'Booked');
+
+SELECT * FROM TicketReservation;
