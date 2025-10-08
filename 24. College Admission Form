@@ -1,0 +1,15 @@
+CREATE DATABASE exp24_college;
+USE exp24_college;
+
+CREATE TABLE CollegeAdmission (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Course VARCHAR(100),
+    AdmissionDate DATE,
+    Status VARCHAR(50)
+);
+
+INSERT INTO CollegeAdmission (StudentName, Course, AdmissionDate, Status)
+VALUES ('Alice Smith', 'Computer Science', '2025-05-10', 'Admitted');
+
+SELECT * FROM CollegeAdmission;
