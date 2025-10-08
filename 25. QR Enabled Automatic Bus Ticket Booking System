@@ -1,0 +1,16 @@
+CREATE DATABASE exp25_bus_ticket;
+USE exp25_bus_ticket;
+
+CREATE TABLE BusTicketBooking (
+    BookingID INT AUTO_INCREMENT PRIMARY KEY,
+    PassengerName VARCHAR(100),
+    BusNumber VARCHAR(50),
+    TravelDate DATE,
+    QRCode VARCHAR(255),
+    Status VARCHAR(50)
+);
+
+INSERT INTO BusTicketBooking (PassengerName, BusNumber, TravelDate, QRCode, Status)
+VALUES ('Michael Johnson', 'B123', '2025-06-01', 'QR1234567890', 'Booked');
+
+SELECT * FROM BusTicketBooking;
