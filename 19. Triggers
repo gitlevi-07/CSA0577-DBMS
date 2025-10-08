@@ -1,0 +1,27 @@
+CREATE DATABASE exp19_trigger;
+USE exp19_trigger;
+
+CREATE TABLE Employee (
+    EmpID INT AUTO_INCREMENT PRIMARY KEY,
+    EmpName VARCHAR(50)
+);
+
+CREATE TABLE AuditLog (
+    LogID INT AUTO_INCREMENT PRIMARY KEY,
+    Action VARCHAR(20),
+    EmpID INT,
+    DateTime DATETIME
+);
+
+DELIMITER $$
+CREATE TRIGGER EmployeeInsert
+AFTER INSERT ON Employee
+FOR EACH ROW
+BEGIN
+    INSERT INTO AuditLog (Action, EmpID, DateTime)
+    VALUES ('INSERT', NEW.EmpID, NOW());
+END $$
+DELIMITER ;
+
+INSERT INTO Employee (EmpName) VALUES ('Ravi'), ('Sneha');
+SELECT * FROM AuditLog;
