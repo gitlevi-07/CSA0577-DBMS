@@ -1,0 +1,11 @@
+CREATE DATABASE exp20_string1;
+USE exp20_string1;
+
+SELECT REPLACE('Hello World', 'World', 'MySQL');
+SELECT REPEAT('Hello ', 3);
+SELECT REVERSE('MySQL');
+SELECT RIGHT('Hello World', 5);
+SELECT LEFT('Hello World', 5);
+SELECT RPAD('Hello', 10, '!');
+SELECT LPAD('Hello', 10, '!');
+
