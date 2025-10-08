@@ -1,0 +1,32 @@
+CREATE DATABASE exp18_cursor;
+USE exp18_cursor;
+
+CREATE TABLE Employee (
+    EmpID INT AUTO_INCREMENT PRIMARY KEY,
+    EmpName VARCHAR(50)
+);
+
+INSERT INTO Employee (EmpName) VALUES
+('Ravi'), ('Meera'), ('Rahul'), ('Sneha');
+
+DELIMITER $$
+CREATE PROCEDURE DisplayEmployees()
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE emp_name VARCHAR(50);
+    DECLARE emp_cursor CURSOR FOR SELECT EmpName FROM Employee;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN emp_cursor;
+    read_loop: LOOP
+        FETCH emp_cursor INTO emp_name;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        SELECT emp_name AS Employee_Name;
+    END LOOP;
+    CLOSE emp_cursor;
+END $$
+DELIMITER ;
+
+CALL DisplayEmployees();
